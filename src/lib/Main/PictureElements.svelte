@@ -1,16 +1,23 @@
 <script lang="ts">
 	import type { KonvaViewer } from '$lib/Modal/PictureElements/konvaViewer';
 	import { onDestroy, onMount, tick } from 'svelte';
-	import { dashboard, editMode, itemHeight } from '$lib/Stores';
+import { dashboard, editMode, itemHeight } from '$lib/Stores';
 	import { openModal } from 'svelte-modals';
 	import type { Dashboard } from '$lib/Types';
 	import { loadIcons } from '@iconify/svelte';
 	import { icons } from '$lib/Modal/PictureElements/icons';
 
-	export let sel: any;
+export let sel: any;
+export let variant: 'card' | 'view' = 'card';
+export let width: string | undefined;
+export let height: string | undefined;
 
-	let konva: KonvaViewer;
-	let canvas: HTMLDivElement;
+let konva: KonvaViewer;
+let canvas: HTMLDivElement;
+
+$: cardHeight = `calc(${$itemHeight}px * 4 + 0.4rem * 3)`;
+$: computedHeight = variant === 'card' ? cardHeight : height || '100%';
+$: computedWidth = variant === 'card' ? 'calc(14.5rem * 2 + 0.4rem)' : width || '100%';
 
 	/**
 	 * Setup konva by importing it on
@@ -86,7 +93,8 @@
 	on:click={handleClick}
 	bind:this={canvas}
 	style:cursor={$editMode ? 'unset' : 'default'}
-	style:height="calc({$itemHeight}px * 4 + 0.4rem * 3)"
+	style:height={computedHeight}
+	style:width={computedWidth}
 	style:background-color={!sel?.elements?.length
 		? 'var(--theme-button-background-color-off)'
 		: 'transparent'}
@@ -94,7 +102,6 @@
 
 <style>
 	div {
-		width: calc(14.5rem * 2 + 0.4rem);
 		border-radius: 1rem;
 		border-radius: 0.6rem;
 		overflow: hidden;

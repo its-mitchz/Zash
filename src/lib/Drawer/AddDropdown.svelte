@@ -8,11 +8,14 @@
 	import { onMount } from 'svelte';
 	import type { ComponentType } from 'svelte';
 
-	export let view: ViewItem | undefined;
+export let view: ViewItem | undefined;
 
-	let isOpen = false;
-	let showTriangle = false;
-	let container: HTMLDivElement;
+let isOpen = false;
+let showTriangle = false;
+let container: HTMLDivElement;
+let floorplanView = false;
+
+$: floorplanView = view?.layout === 'floorplan';
 
 	let SidebarButton: ComponentType;
 	let ObjectButton: ComponentType;
@@ -81,13 +84,19 @@
 				<svelte:component this={SidebarButton} on:clicked={handleClick} />
 			{/if}
 
-			<svelte:component this={ObjectButton} {view} on:clicked={handleClick} />
+			{#if floorplanView}
+				<p class="floorplan-hint">
+					{$lang('floorplan_add_hint')}
+				</p>
+			{:else}
+				<svelte:component this={ObjectButton} {view} on:clicked={handleClick} />
 
-			<svelte:component this={SectionButton} {view} on:clicked={handleClick} />
+				<svelte:component this={SectionButton} {view} on:clicked={handleClick} />
 
-			<svelte:component this={HorizontalStackButton} {view} on:clicked={handleClick} />
+				<svelte:component this={HorizontalStackButton} {view} on:clicked={handleClick} />
 
-			<svelte:component this={ScenesButton} {view} on:clicked={handleClick} />
+				<svelte:component this={ScenesButton} {view} on:clicked={handleClick} />
+			{/if}
 
 			<svelte:component this={ViewButton} on:clicked={handleClick} />
 		</div>
@@ -128,5 +137,12 @@
 		border-left: 8px solid transparent;
 		border-right: 8px solid transparent;
 		border-bottom: 8px solid #1d1b18;
+	}
+
+	.floorplan-hint {
+		max-width: 18rem;
+		margin: 0.5rem 0.75rem 0.75rem;
+		font-size: 0.9rem;
+		color: rgba(255, 255, 255, 0.8);
 	}
 </style>

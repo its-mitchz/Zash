@@ -7,9 +7,9 @@
 
 	const dispatch = createEventDispatcher();
 
-	export let view: any;
+export let view: any;
 
-	$: noViews = !$dashboard?.views?.length;
+$: noViews = !$dashboard?.views?.length || view?.layout === 'floorplan';
 
 	/**
 	 * Creates a new section object

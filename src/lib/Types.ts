@@ -1,5 +1,6 @@
 import type Konva from 'konva';
 import type { ShapeConfig } from 'konva/lib/Shape';
+import type { NodeConfig } from 'konva/lib/Node';
 
 // configuration.yaml
 
@@ -34,6 +35,8 @@ export interface Views {
 	icon?: string;
 	sections?: Section[];
 	isDndShadowItem?: boolean;
+	layout?: 'grid' | 'floorplan';
+	floorplan?: FloorplanConfig;
 }
 
 export interface Section {
@@ -73,6 +76,8 @@ export interface ViewItem {
 	name?: string;
 	icon?: string;
 	sections?: any[];
+	layout?: 'grid' | 'floorplan';
+	floorplan?: FloorplanConfig;
 }
 
 export interface EmptyItem {
@@ -303,4 +308,9 @@ export interface KonvaStore {
 	mode: KonvaMode;
 	undoStack: KonvaHistory[];
 	redoStack: KonvaHistory[];
+}
+
+export interface FloorplanConfig {
+	id?: number;
+	elements?: NodeConfig[];
 }

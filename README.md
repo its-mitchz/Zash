@@ -81,6 +81,16 @@ If you prefer to use Kubernetes, see [Chart README.md](https://github.com/matt87
 
 </details>
 
+## Floorplan view
+
+Need a canvas-style dashboard? Switch any view to the new **Floorplan** layout:
+
+1. Enter edit mode and open **Edit view** (pencil icon in the navigation bar).
+2. Change the layout picker from `Grid` to `Floorplan`, then click **Configure floorplan**.
+3. Use the Konva editor to drop cards, icons, or shapes anywhere on your image.
+
+While a floorplan view is active, the regular section/stack buttons are hidden in the drawer—manage everything from the floorplan editor instead.
+
 ...
 
 ---

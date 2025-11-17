@@ -11,6 +11,7 @@
 
 	$: noViewsOrSectionsOrStacks =
 		!view ||
+		view.layout === 'floorplan' ||
 		!view.sections ||
 		view.sections.length === 0 ||
 		checkForHorizontalStackOnly(view.sections);

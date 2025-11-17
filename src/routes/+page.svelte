@@ -205,7 +205,11 @@
 	{/await}
 
 	<!-- main -->
-	{#if view?.sections}
+	{#if view?.layout === 'floorplan'}
+		{#await import('$lib/Main/FloorplanView.svelte') then FloorplanView}
+			<svelte:component this={FloorplanView.default} {view} />
+		{/await}
+	{:else if view?.sections}
 		{#await import('$lib/Main/Index.svelte') then Main}
 			<svelte:component this={Main.default} {view} {altKeyPressed} />
 		{/await}

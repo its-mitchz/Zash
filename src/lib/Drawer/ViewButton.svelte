@@ -29,6 +29,7 @@
 			{
 				name: name,
 				id,
+				layout: 'grid',
 				sections: []
 			},
 			...$dashboard.views

@@ -5,9 +5,9 @@
 	import { generateId } from '$lib/Utils';
 	import { createEventDispatcher } from 'svelte';
 
-	export let view: any;
+export let view: any;
 
-	$: noViews = !$dashboard?.views?.length;
+$: noViews = !$dashboard?.views?.length || view?.layout === 'floorplan';
 
 	const dispatch = createEventDispatcher();
 
