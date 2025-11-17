@@ -1,7 +1,7 @@
 # required configuration options
-name: Fusion
+name: Zash
 version: 2024.10.1
-slug: ha_fusion
+slug: zash
 description: A modern, easy-to-use and performant custom Home Assistant dashboard
 arch:
   - aarch64
