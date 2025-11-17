@@ -9,8 +9,8 @@ import { dashboard, editMode, itemHeight } from '$lib/Stores';
 
 export let sel: any;
 export let variant: 'card' | 'view' = 'card';
-export let width: string | undefined;
-export let height: string | undefined;
+export let width: string | undefined = undefined;
+export let height: string | undefined = undefined;
 
 let konva: KonvaViewer;
 let canvas: HTMLDivElement;

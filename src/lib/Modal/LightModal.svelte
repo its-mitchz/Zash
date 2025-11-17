@@ -14,8 +14,8 @@
 	export let isOpen: boolean;
 	export let sel: any;
 
-	let debounce = false;
-	let timeout: ReturnType<typeof setTimeout>;
+let debounce = false;
+let timeout: ReturnType<typeof setTimeout> | undefined = undefined;
 	let rangeValue = 0;
 
 	let groupSel: string | undefined;
@@ -139,7 +139,7 @@
 							sel = $states?.[groupEntity?.entity_id];
 
 							// reset
-							clearTimeout(timeout);
+							if (timeout) clearTimeout(timeout);
 							debounce = false;
 							rangeValue = brightness || 0;
 						}}>{getName(undefined, groupEntity)}</button
@@ -152,7 +152,7 @@
 								sel = $states?.[selEntity];
 
 								// reset
-								clearTimeout(timeout);
+								if (timeout) clearTimeout(timeout);
 								debounce = false;
 								rangeValue = brightness || 0;
 							}}
@@ -174,7 +174,7 @@
 						sel = $states?.[event?.detail];
 
 						// reset
-						clearTimeout(timeout);
+						if (timeout) clearTimeout(timeout);
 						debounce = false;
 						rangeValue = brightness || 0;
 					}}

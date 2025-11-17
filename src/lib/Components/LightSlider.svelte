@@ -7,8 +7,8 @@
 	export let brightness: number;
 	export let current: number;
 
-	export let debounce: boolean;
-	export let timeout: ReturnType<typeof setTimeout>;
+export let debounce: boolean;
+export let timeout: ReturnType<typeof setTimeout> | undefined = undefined;
 	export let rangeValue: number;
 
 	let request: Promise<unknown> | undefined = undefined;
@@ -28,7 +28,7 @@
 		if (request) return;
 
 		debounce = true;
-		clearTimeout(timeout);
+		if (timeout) clearTimeout(timeout);
 		timeout = setTimeout(() => {
 			debounce = false;
 			rangeValue = brightness || 0;

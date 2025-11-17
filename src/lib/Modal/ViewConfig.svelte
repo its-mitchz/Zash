@@ -6,8 +6,8 @@
 	import InputClear from '$lib/Components/InputClear.svelte';
 	import ConfigButtons from '$lib/Modal/ConfigButtons.svelte';
 	import Ripple from 'svelte-ripple';
-	import { updateObj, generateId } from '$lib/Utils';
-	import type { ViewItem } from '$lib/Types';
+import { updateObj, generateId } from '$lib/Utils';
+import type { FloorplanConfig, ViewItem } from '$lib/Types';
 	import { openModal } from 'svelte-modals';
 	import { icons } from '$lib/Modal/PictureElements/icons';
 
@@ -26,14 +26,14 @@ function set(key: string, event?: any) {
 	$dashboard = $dashboard;
 }
 
-function ensureFloorplan() {
+function ensureFloorplan(): FloorplanConfig {
 	if (!sel.floorplan) {
 		sel.floorplan = {
-			id: sel.floorplan?.id || sel?.id || generateId($dashboard),
-			elements: sel.floorplan?.elements || []
+			id: sel?.id || generateId($dashboard),
+			elements: []
 		};
 	}
-	return sel.floorplan;
+	return sel.floorplan as FloorplanConfig;
 }
 
 function handleLayoutChange(value: 'grid' | 'floorplan') {
