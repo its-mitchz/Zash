@@ -1,6 +1,7 @@
 # ha-fusion
 
-A modern, easy-to-use and performant custom [Home Assistant](https://www.home-assistant.io/) dashboard
+A modern, easy-to-use and performant custom [Home Assistant](https://www.home-assistant.io/) dashboard.  
+This fork bundles the Supervisor add-on manifest under `homeassistant-addon/ha-fusion`, so you can develop, build, and install from the same repository.
 
 <https://www.youtube.com/watch?v=D8mWruSuPOM>
 
@@ -22,11 +23,13 @@ The current state of this project is **pre-beta**. This means that there's basic
 
 For "Operating System" or "Supervised" installation methods, you can install ha-fusion as an add-on:
 
-1. **Add Repository**: To begin, add the ha-fusion add-on repository to your Home Assistant instance. Click the button below or manually add the repository using this URL: <https://github.com/matt8707/addon-ha-fusion>.
+1. **Add Repository**: Point your Home Assistant instance at _this_ repository. Click the badge below or add the repository manually using this URL: <https://github.com/its-mitchz/Zash>.
 
-   [![Open your Home Assistant instance and show the add add-on repository dialog with a specific repository URL pre-filled.](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fmatt8707%2Faddon-ha-fusion)
+   [![Open your Home Assistant instance and show the add add-on repository dialog with a specific repository URL pre-filled.](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fits-mitchz%2FZash)
 
 2. **Install Add-on**: After adding the repository, refresh the add-on store page. Locate ha-fusion in the list and proceed with the installation.
+
+   The Supervisor consumes the manifest located at `homeassistant-addon/ha-fusion`, so you can tweak the Dockerfile, `config.yaml`, or translations locally before publishing.
 
 ---
 
