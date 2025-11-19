@@ -1,7 +1,16 @@
 <script lang="ts">
 	// eventually merge with SidebarItemConfig.svelte...
 
-	import { dashboard, record, lang, motion, ripple, states, demo } from '$lib/Stores';
+	import {
+		dashboard,
+		record,
+		lang,
+		motion,
+		ripple,
+		states,
+		demo,
+		connection
+	} from '$lib/Stores';
 	import { openModal, closeModal } from 'svelte-modals';
 	import { onMount } from 'svelte';
 	import { flip } from 'svelte/animate';
@@ -10,7 +19,8 @@
 	import {
 		getCameraEntity,
 		getSensorEntity,
-		getMediaPlayerEntity
+		getMediaPlayerEntity,
+		getGraphEntity
 	} from '$lib/Modal/getRandomEntity';
 
 	import Button from '$lib/Main/Button.svelte';
@@ -20,6 +30,7 @@
 	import ConfigButtons from '$lib/Modal/ConfigButtons.svelte';
 	import Ripple from 'svelte-ripple';
 	import PictureElements from '$lib/Main/PictureElements.svelte';
+	import Graph from '$lib/Main/Graph.svelte';
 
 	export let isOpen: boolean;
 	export let sel: any;
@@ -31,6 +42,7 @@
 	if (!$demo.camera) $demo.camera = getCameraEntity($states);
 	if (!$demo.sensor) $demo.sensor = getSensorEntity($states);
 	if (!$demo.media_player) $demo.media_player = getMediaPlayerEntity($states);
+	if (!$demo.graph) getGraphEntity($states, connection, (id) => ($demo.graph = id));
 
 	let loadIcons: (typeof import('@iconify/svelte'))['loadIcons'];
 	let icons: Record<string, string>;
@@ -100,6 +112,17 @@
 			}
 		},
 		{
+			id: 'graph',
+			type: $lang('graph'),
+			component: Graph,
+			props: {
+				demo: $demo.graph,
+				sel,
+				preview: true,
+				height: '6rem'
+			}
+		},
+		{
 			id: 'picture_elements',
 			type: $lang('picture_elements'),
 			component: PictureElements,
@@ -146,6 +169,12 @@
 			case 'camera':
 				openModal(() => import('$lib/Modal/CameraConfig.svelte'), {
 					demo: $demo.camera,
+					sel
+				});
+				break;
+			case 'graph':
+				openModal(() => import('$lib/Modal/GraphConfig.svelte'), {
+					demo: $demo.graph,
 					sel
 				});
 				break;

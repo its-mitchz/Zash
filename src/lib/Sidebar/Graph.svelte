@@ -9,6 +9,7 @@
 	export let name: string | undefined = undefined;
 	export let period = 'day';
 	export let stroke = 2;
+	export let timelineHeight = '5rem';
 
 	let width: number;
 	let height: number;
@@ -174,6 +175,7 @@
 
 	<div
 		class="timeline"
+		style:height={timelineHeight}
 		bind:clientWidth={width}
 		bind:clientHeight={height}
 		on:pointermove={(event) => handlePointerMove(event)}

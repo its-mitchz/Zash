@@ -1,6 +1,6 @@
 # required configuration options
 name: Zash
-version: 2024.10.2
+version: 2024.10.3
 slug: zash
 description: A modern, easy-to-use and performant custom Home Assistant dashboard
 arch:
